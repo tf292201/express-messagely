@@ -1,12 +1,20 @@
-/** Database connection for messagely. */
-
-
+// Correct the import statement to properly import pg
 const { Client } = require("pg");
 const { DB_URI } = require("./config");
 
-const client = new Client(DB_URI);
+// Create a new instance of Client
+const db = new Client({
+    connectionString: DB_URI
+});
 
-client.connect();
+// Connect to the database
+db.connect()
+    .then(() => {
+        console.log("Connected to database");
+    })
+    .catch(err => {
+        console.error("Error connecting to database:", err);
+    });
 
-
-module.exports = client;
+// Export the db client
+module.exports = db;

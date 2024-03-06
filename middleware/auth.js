@@ -37,6 +37,7 @@ function ensureCorrectUser(req, res, next) {
     }
   } catch (err) {
     // errors would happen here if we made a request and req.user is undefined
+    console.log(req.user);
     return next({ status: 401, message: "Unauthorized" });
   }
 }
